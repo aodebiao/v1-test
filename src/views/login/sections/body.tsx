@@ -27,25 +27,33 @@ function BodySection() {
                     }}
                 />
 
-                <Box display={'flex'} flexDirection={'row'}>
+                <Box display="flex" flexDirection={'row'}>
                     <TextFieldElement
                         name="verifyCode"
-                        sx={{
-                            width: '66%',
-                        }}
                         label="验证码"
                         required
+                        slotProps={{
+                            input:{
+                                endAdornment: <InputAdornment position="end">
+                                    <Divider sx={{
+                                        height: '35px',         // 手动设置高度
+                                        mx: 1,              // 水平间距
+                                        borderColor: 'gray',
+                                        borderWidth: '1px',
+                                    }} orientation="vertical" />
+                                    <img crossorigin="anonymous" alt={'验证码加载失败'} src={'https://www.mxnzp.com/api_file/verify/e/1/a/9/2/c/e/2/e35d48ab50034250b6807d922a18dbd4.jpg'}/>
+                                </InputAdornment>,
+
+                            }
+                        }}
+                        sx={{
+                            width: '100%',
+                        }}
                         rules={{
-                            required:'验证码不能为空',
-                            // pattern: {
-                            //     value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                            //     message: '邮箱格式不正确'
-                            // }
+                            required: '验证码不能为空',
                         }}
                     />
-                    <Divider sx={{ height: 'auto', m: 0.5 }} orientation="vertical" />
-
-                </Box>
+                    </Box>
                 <Button type="submit">提交</Button>
             </Box>
         </FormContainer>
