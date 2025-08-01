@@ -1,14 +1,15 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import App from './App.tsx'
 import 'normalize.css/normalize.css'
-import {HashRouter} from "react-router";
+import { RouterProvider} from "react-router";
+import router from "@router/index";
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-      <HashRouter>
-          <App />
-
-      </HashRouter>
+     <RouterProvider router={router}/>
   </StrictMode>,
 )
