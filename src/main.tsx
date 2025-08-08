@@ -1,4 +1,3 @@
-import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import 'normalize.css/normalize.css'
 import { RouterProvider} from "react-router";
@@ -7,9 +6,10 @@ import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
+import './mock/user'; // mock 的配置文件，里面写Mock.mock(...)
 
 createRoot(document.getElementById('root')!).render(
-  <StrictMode>
+  // <StrictMode>
      <RouterProvider router={router}/>
-  </StrictMode>,
+  // </StrictMode>,
 )

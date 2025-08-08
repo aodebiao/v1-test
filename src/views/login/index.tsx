@@ -3,7 +3,7 @@ import {Box, Paper, styled} from "@mui/material";
 import HeaderSection from "@views/login/sections/header.";
 import Footer from "@views/login/sections/footer";
 import BodySection from "@views/login/sections/body";
-
+import login_bg from '@assets/login-bg.svg'
 const LoginPaper = styled(Paper)(({theme}) => ({
     width: 400,
     height: 400,
@@ -18,10 +18,12 @@ const Login: FC = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        minHeight: '100vh'
+        minHeight: '100vh',
+        background: `url(${login_bg}) no-repeat`,
+        backgroundSize:'cover'
     }}>
         <LoginPaper elevation={3}>
-            <HeaderSection variant={"h6"} component={"div"} children={"hello"}/>
+            <HeaderSection variant={"h3"} component={"div"} children={"Hello"} color={'gray'}/>
             <BodySection />
             <Footer/>
         </LoginPaper>

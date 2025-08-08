@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "noImplicitAny": true,
+    "noUnusedLocals": false,  // 未使用的本地变量/导入报错
+    "noUnusedParameters": false,
+    "importsNotUsedAsValues": "remove",
+    "strict": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": false,
     "baseUrl": ".",
@@ -10,6 +15,10 @@
       "@views/*": ["src/views/*"],
       "@router/*": ["src/router/*"],
       "@assets/*": ["src/assets/*"],
+      "@mock/*": ["src/mock/*"],
+      "@services/*": ["src/services/*"],
+      "@types/*": ["src/types/*"],
+      "@commons/*": ["src/commons/*"],
     }
   },
   "include": ["src"],
