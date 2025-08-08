@@ -4,8 +4,14 @@
     "noUnusedLocals": false,  // 未使用的本地变量/导入报错
     "noUnusedParameters": false,
     "importsNotUsedAsValues": "remove",
-    "strict": false,
+    "strict": true,
     "experimentalDecorators": true,
+    "jsx": "react-jsx",
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "emitDecoratorMetadata": false,
     "baseUrl": ".",
     "paths": {
@@ -17,14 +23,14 @@
       "@assets/*": ["src/assets/*"],
       "@mock/*": ["src/mock/*"],
       "@services/*": ["src/services/*"],
-      "@types/*": ["src/types/*"],
-      "@commons/*": ["src/commons/*"],
-    }
+      "@ctypes/*": ["src/types/*"],
+      "@commons/*": ["src/commons/*"]
+    },
   },
-  "include": ["src"],
+  "include": ["src/**/*.ts","src/**/*.tsx","vite.config.ts"],
   "files": [],
   "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
+//    { "path": "./tsconfig.app.json" },
+//    { "path": "./tsconfig.node.json" }
   ]
 }

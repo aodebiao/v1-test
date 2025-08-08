@@ -23,7 +23,7 @@ const Login: FC = () => {
         backgroundSize:'cover'
     }}>
         <LoginPaper elevation={3}>
-            <HeaderSection variant={"h3"} component={"div"} children={"Hello"} color={'gray'}/>
+            <HeaderSection variant={"h3"} component={"div"} children={"Hello"} color={'#5c7ada'}/>
             <BodySection />
             <Footer/>
         </LoginPaper>

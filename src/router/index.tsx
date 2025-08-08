@@ -1,6 +1,7 @@
 import {createHashRouter} from "react-router";
 import Home from "@views/home";
 import Login from "@views/login";
+import {Test} from "@components/index";
 
 
 const router = createHashRouter([
@@ -11,7 +12,10 @@ const router = createHashRouter([
     {
         path:'/login',
         element:<Login/>
-    }
+    },{
+        path: '/test',
+        element: <Test />,
+    },
 
 ])
 

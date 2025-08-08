@@ -4,6 +4,7 @@ import axios, {
     type AxiosResponse
 } from 'axios';
 
+
 // 定义响应数据的通用结构
 export interface ApiResponse<T = any> {
     code: number;
@@ -52,7 +53,7 @@ request.interceptors.response.use(
 // }
 
 // 3. 使用函数声明而不是箭头函数
-type PostRequest = <T>(url: string, data?: any) => Promise<T>;
+export type PostRequest = <T>(url: string, data?: any) => Promise<T>;
 export const  postRequest:PostRequest = async <T>(url: string, data?: any): Promise<T> => {
     const response:AxiosResponse<ApiResponse<T>> = await request.post<ApiResponse<T>>(url, data);
     // 这里 response 类型是 AxiosResponse<ApiResponse<T>>

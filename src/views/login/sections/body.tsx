@@ -2,9 +2,10 @@ import { Box, Button, Divider, InputAdornment } from '@mui/material';
 import { FormContainer, TextFieldElement } from 'react-hook-form-mui';
 import * as React from "react";
 import { useForm } from "react-hook-form";
-import type { LoginResponse} from "../../../types/auth";
 import { postRequest } from '@commons/request'
-
+import {LoginResponse} from "@ctypes/auth";
+import {login} from '@services/login'
+import {useNavigate} from "react-router";
 
 type LoginFormData = {
     username: string;
@@ -18,6 +19,7 @@ function BodySection() {
     const [loading, setLoading] = React.useState<boolean>(true);
     const [imgLoading, setImgLoading] = React.useState(true);
     const [err, setErr] = React.useState<boolean>(false);
+    const navigate = useNavigate()
     const formContext = useForm<LoginFormData>({ defaultValues: { username: "", password: "",verifyCode:'' } });
 
     // 从后端获取验证码的函数
@@ -60,8 +62,7 @@ function BodySection() {
     };
 
     const loginSubmit = async () => {
-
-        const valid = await formContext.trigger();
+        const [valid] = await Promise.all([formContext.trigger()]);
         if (!valid) {
             console.log("表单校验失败")
             return;
@@ -76,8 +77,14 @@ function BodySection() {
         }else {
             formContext.clearErrors("verifyCode"); // 校验正确时清除错误
         }
-        const res: LoginResponse = await postRequest<LoginResponse>('/api/login', values);
-        console.log(res)
+
+        const res: LoginResponse =  await login(values)
+        if (res && res.token) {
+            localStorage.setItem('token', res.token)
+            localStorage.setItem('username', res.username)
+            localStorage.setItem('userId', res.userId)
+            navigate('/test')
+        }
     }
 
     return (

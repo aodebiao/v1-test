@@ -12,6 +12,8 @@ export default defineConfig({
     mockPath: 'mock', enable: true
   })],
   resolve: {
+    // alias: [{find:'@',replacement:path.resolve(__dirname,'src')}],
+
     alias: {
       "@components":resolve('src/components'),
       "@utils":resolve('src/utils'),
@@ -22,7 +24,7 @@ export default defineConfig({
       "@commons":resolve('src/commons'),
       "@services":resolve('src/services'),
       "@mock":resolve('src/mock'),
-      "@types":resolve('src/types'),
+      "@ctypes":resolve('./src/types'),
     },
     extensions: ['.tsx', '.ts', '.jsx', '.js'],
 

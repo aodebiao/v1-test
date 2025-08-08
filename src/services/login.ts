@@ -1,6 +1,6 @@
-import type { LoginParams, LoginResponse } from '@/types/auth';
-import request from '@commons/request'
+import type { LoginParams, LoginResponse } from '@ctypes/auth';
+import request, {postRequest} from '@commons/request'
 
 export function login(loginParam:LoginParams) {
-    return request.post<LoginResponse>('/api/login', loginParam);
+    return postRequest<LoginResponse>('/api/login', loginParam);
 }
