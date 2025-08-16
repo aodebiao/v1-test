@@ -5,7 +5,9 @@ import { useForm } from "react-hook-form";
 import { postRequest } from '@commons/request'
 import {LoginResponse} from "@ctypes/auth";
 import {login} from '@services/login'
-import {useNavigate} from "react-router";
+import {useLocation, useNavigate} from "react-router";
+import {useAppDispatch} from "@store/index";
+import {SET_USER_INFO} from "@store/userSlice";
 
 type LoginFormData = {
     username: string;
@@ -20,6 +22,12 @@ function BodySection() {
     const [imgLoading, setImgLoading] = React.useState(true);
     const [err, setErr] = React.useState<boolean>(false);
     const navigate = useNavigate()
+    const dispatch = useAppDispatch();
+
+    const location = useLocation();
+    // 从state中获取from参数，如果没有则默认跳转到首页
+    const from = location.state?.from?.pathname || '/';
+    console.log('from',from)
     const formContext = useForm<LoginFormData>({ defaultValues: { username: "", password: "",verifyCode:'' } });
 
     // 从后端获取验证码的函数
@@ -61,6 +69,13 @@ function BodySection() {
         setErr(true);
     };
 
+    const handleEnter = async (e:React.KeyboardEvent) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+        }
+        loginSubmit()
+    }
+
     const loginSubmit = async () => {
         const [valid] = await Promise.all([formContext.trigger()]);
         if (!valid) {
@@ -83,7 +98,9 @@ function BodySection() {
             localStorage.setItem('token', res.token)
             localStorage.setItem('username', res.username)
             localStorage.setItem('userId', res.userId)
-            navigate('/test')
+            dispatch(SET_USER_INFO(res))
+            debugger
+            navigate(from)
         }
     }
 
@@ -228,6 +245,7 @@ function BodySection() {
                     variant="contained"
                     fullWidth
                     onClick={loginSubmit}
+                    onKeyDown={handleEnter}
                     sx={{
                         mt: 2,
                         height: 45,

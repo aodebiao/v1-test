@@ -4,6 +4,7 @@ import HeaderSection from "@views/login/sections/header.";
 import Footer from "@views/login/sections/footer";
 import BodySection from "@views/login/sections/body";
 import login_bg from '@assets/login-bg.svg'
+import {useLocation, useNavigate} from "react-router";
 const LoginPaper = styled(Paper)(({theme}) => ({
     width: 400,
     height: 400,
@@ -14,6 +15,8 @@ const LoginPaper = styled(Paper)(({theme}) => ({
 
 
 const Login: FC = () => {
+
+
     return <Box sx={{
         display: 'flex',
         justifyContent: 'center',
